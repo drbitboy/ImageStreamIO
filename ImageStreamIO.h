@@ -316,20 +316,6 @@ errno_t ImageStreamIO_closeIm(IMAGE
 /* =============================================================================================== */
 
 
-/** @brief Destroy shmim semaphores
- *
- * ## Purpose
- *
- * Destroy semaphore of a shmim
- *
- * ## Arguments
- *
- * @param[in]
- * image	IMAGE*
- * 			pointer to shmim
- */
-
-
 /** @brief Post all shmim semaphores
  *
  * ## Purpose
