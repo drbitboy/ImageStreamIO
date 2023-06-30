@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-#    - name: Install Dependencies
-#      run: sudo apt-get install -qq libcfitsio-dev libreadline6-dev libncurses5-dev libfftw3-dev libgsl0-dev flex bison
+    - name: Install Dependencies
+      run: sudo apt-get install -qq libcfitsio-dev libreadline6-dev libncurses5-dev
 #
 #    - name: Install openblas with lapack
 #      run: |
