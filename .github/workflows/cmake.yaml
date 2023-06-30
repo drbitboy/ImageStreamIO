@@ -2,6 +2,8 @@ name: CMake
 
 on:
   push:
+    branches:
+      - refactor/add-github-actions
 #  schedule:
 #  - cron: '0 13 * * 1'
 #
@@ -26,6 +28,7 @@ jobs:
       run: |
         git clone https://github.com/drbitboy/ImageStreamIO.git
         cd ImageStreamIO
+        git checkout refactor/add-github-action
         mkdir -pv _build
 
     - name: Configure
