@@ -9,7 +9,7 @@
 #include "ImageStreamIO_cleanupTest.hpp"
 
 // Duplicate ImageStreamIO search for directory to contain shmim file
-char* gtest_shmdirname()
+char* catch2_shmdirname()
 {
   const char shmdir_envvar_name[] = { "MILK_SHM_DIR" };
   static char shmdir_macro[] = { SHAREDMEMDIR };
@@ -407,55 +407,47 @@ SECTION("Utilities.CircularWriteBufferAddresses") {
 
 SECTION("Utilities.FilenameFailure") {
   char file_name[256];
-  char* gtest_shmdirname(void);
-  char* pshmdirname = gtest_shmdirname();
-  const char gtest_name[] { "g" };
+  char* catch2_shmdirname(void);
+  char* pshmdirname = catch2_shmdirname();
+  const char catch2_name[] { "g" };
 
   // Get minimum length of shmim file path (/dir/name.im.shm)
   size_t toosmall{ (pshmdirname ? strlen(pshmdirname) : 0)
                  + strlen("/")
-                 + strlen(gtest_name)
+                 + strlen(catch2_name)
                  + strlen(".im.shm")
                  };
 
   REQUIRE(pshmdirname);
-  //if(!pshmdirname)
-  //{
-  //  GTEST_SKIP_("Skipped filename tests; no directory is available");
-  //}
 
   CHECK(toosmall < sizeof file_name);
 
   // One character too small (inadeqquat space for terminating null)
   CHECK(IMAGESTREAMIO_FAILURE
-           == ImageStreamIO_filename(file_name,toosmall,gtest_name));
+           == ImageStreamIO_filename(file_name,toosmall,catch2_name));
 }
 
 SECTION("Utilities.FilenameSuccess") {
   char file_name[256];
   char* pfile_name{0};
-  char* gtest_shmdirname(void);
-  char* pshmdirname = gtest_shmdirname();
-  const char gtest_name[] { "g" };
+  char* catch2_shmdirname(void);
+  char* pshmdirname = catch2_shmdirname();
+  const char catch2_name[] { "C" };
 
   // Get minimum length of shmim file path (/dir/name.im.shm)
   size_t toosmall{ (pshmdirname ? strlen(pshmdirname) : 0)
                  + strlen("/")
-                 + strlen(gtest_name)
+                 + strlen(catch2_name)
                  + strlen(".im.shm")
                  };
 
   REQUIRE(pshmdirname);
-  //if(!pshmdirname)
-  //{
-  //  GTEST_SKIP_("Skipped filename tests; no directory is available");
-  //}
 
   CHECK(toosmall < sizeof file_name);
 
   // Barely enough
   CHECK(IMAGESTREAMIO_SUCCESS
-           == ImageStreamIO_filename(file_name,toosmall+1,gtest_name));
+           == ImageStreamIO_filename(file_name,toosmall+1,catch2_name));
 
   CHECK(strlen(file_name) ==toosmall);
 
@@ -467,8 +459,8 @@ SECTION("Utilities.FilenameSuccess") {
   CHECK('/' ==*pfile_name);
   ++pfile_name;
 
-  CHECK(0 ==strncmp(pfile_name,gtest_name,strlen(gtest_name)));
-  pfile_name += strlen(gtest_name);
+  CHECK(0 ==strncmp(pfile_name,catch2_name,strlen(catch2_name)));
+  pfile_name += strlen(catch2_name);
 
   CHECK(0 ==strcmp(pfile_name,".im.shm"));
 }
@@ -804,7 +796,6 @@ SECTION("TestCreation.ImageGPUSharedCreation") {
 #else
 SECTION("###SKIPPED:  TestCreation.ImageGPUSharedCreation") {
   REQUIRE( true == true);
-  //GTEST_SKIP_("Skipped GPU Shared Creation; HAVE_CUDA is undefined");
 }
 #endif
 

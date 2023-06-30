@@ -7,7 +7,7 @@ message("")
 message(" SRCNAME = ${SRCNAME} -> LIBNAME = ${LIBNAME}")
 
 option(build_python_module "Compile Python Wrappers" OFF)
-option(gtest_build_tests "Build Unit Tests" OFF)
+option(build_tests "Build Unit Tests" OFF)
 
 project(${LIBNAME} LANGUAGES C)
 
@@ -49,13 +49,13 @@ endif()
 
 ########################################################################
 #
-# Google Test.
+# Test.
 #
 # The tests are not built by default.  To build them, set the
-# gtest_build_tests option to ON.  You can do it by running ccmake
-# or specifying the -Dgtest_build_tests=ON flag when running cmake.
+# build_tests option to ON.  You can do it by running ccmake
+# or specifying the -Dbuild_tests=ON flag when running cmake.
 
-if (gtest_build_tests)
+if (build_tests)
   # This must be set in the root directory for the tests to be run by
   # 'make test' or ctest.
   enable_testing()
