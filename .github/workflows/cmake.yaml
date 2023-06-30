@@ -54,4 +54,4 @@ jobs:
     - name: Test II
       working-directory: ${{github.workspace}}/ImageStreamIO/_build
       shell: bash
-      run: ./tests/ISIO_Catch2
+      run: ./tests/ISIO_Catch2 -s
