@@ -3,7 +3,7 @@ name: CMake
 on:
   push:
     branches:
-      - refactor/add-github-actions
+      - refactor/add-github-action
 #  schedule:
 #  - cron: '0 13 * * 1'
 #
