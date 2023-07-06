@@ -304,6 +304,7 @@ ImageStreamIO_subTest_Operations(int& test_count, int& success_count)
                 // - On first pass by here, both parent and child ...
                 int sval = 0;
                 ++test_count;
+                usleep(1000); // - Allow time for child to update semlog
                 if (sem_getvalue(parent_image.semlog,&sval))
                 {
                     perror("Parent sem_getvalue[semlog]");
