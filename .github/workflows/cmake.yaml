@@ -49,7 +49,7 @@ jobs:
     - name: Test II first
       working-directory: ${{github.workspace}}/ImageStreamIO/_build
       shell: bash
-      run: ./tests/ISIO_Catch2 -s
+      run: ./tests/ISIO_Catch2 -s 2>&1
 
     - name: Test I second
       working-directory: ${{github.workspace}}/ImageStreamIO/_build
