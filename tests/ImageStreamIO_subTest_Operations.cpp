@@ -312,8 +312,8 @@ ImageStreamIO_subTest_Operations(int& test_count, int& success_count)
                 //   ... will have each posted once to semlog:
                 if (sval != 2)
                 {
-                    errno = EINVAL;
-                    perror("Parent semlog value is not 1");
+                    errno = sval;
+                    perror("Parent semlog value is not 2");
                     return;
                 }
                 ++success_count;
