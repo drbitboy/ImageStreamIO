@@ -46,12 +46,12 @@ jobs:
       shell: bash
       run: sudo make install
 
-    - name: Test I
-      working-directory: ${{github.workspace}}/ImageStreamIO/_build
-      shell: bash
-      run: ctest
-
-    - name: Test II
+    - name: Test II first
       working-directory: ${{github.workspace}}/ImageStreamIO/_build
       shell: bash
       run: ./tests/ISIO_Catch2 -s
+
+    - name: Test I second
+      working-directory: ${{github.workspace}}/ImageStreamIO/_build
+      shell: bash
+      run: ctest
